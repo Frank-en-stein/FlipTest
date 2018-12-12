@@ -9,12 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var cards: [CardView]!
 
+    override func viewWillAppear(_ animated: Bool) {
+        <#code#>
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-
 }
 
