@@ -6,10 +6,14 @@
 //  Copyright © 2018 asd. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-public let storyboardId: String = "main"
+public class Constants {
+    public static let storyboardId: String = "main"
 
-public let cardImages: [String] = {
-    return []
-}()
+    public static let cardAspectRatio: CGFloat = 230/171.5
+
+    public enum cardType: String {
+        case backside
+    }
+}

@@ -8,12 +8,15 @@
 
 import Foundation
 
+typealias GetCardCB = ([String]) -> Void
+
 class NetworkManager {
     static var sharedInstance: NetworkManager = NetworkManager()
 
     private init() {}
 
-    func getCards() -> [String] {
-        return []
+    func getCards(withcallback callback: @escaping GetCardCB) {
+        var cards: [String] = [String]()
+        callback(cards)
     }
 }

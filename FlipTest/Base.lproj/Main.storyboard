@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina3_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,39 +15,42 @@
             <objects>
                 <viewController storyboardIdentifier="main" id="BYZ-38-t0r" customClass="ViewController" customModule="FlipTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctB-UV-e3r">
-                                <rect key="frame" x="113.5" y="430" width="93" height="30"/>
+                                <rect key="frame" x="160.5" y="812" width="93" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="78b-Nc-00K"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="93" id="RZd-Hk-qWb"/>
                                 </constraints>
                                 <state key="normal" title="Request Card"/>
+                                <connections>
+                                    <action selector="requestCardDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Edm-pU-rHU"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79d-9X-9Sk">
-                                <rect key="frame" x="0.0" y="20" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
                                 <items>
                                     <navigationItem title="Title" id="uyV-fI-pif"/>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfs-FD-ASY" customClass="CardView" customModule="FlipTest" customModuleProvider="target">
-                                <rect key="frame" x="8" y="125" width="144" height="230"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="8" y="308" width="191" height="280"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.30316840280000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="230" id="YdT-C1-wHI"/>
+                                    <constraint firstAttribute="height" priority="250" constant="280" id="YdT-C1-wHI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-lR-Cky" customClass="CardView" customModule="FlipTest" customModuleProvider="target">
-                                <rect key="frame" x="168" y="125" width="144" height="230"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="215" y="308" width="191" height="280"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.30316840280000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="230" id="5Qd-cL-YID"/>
+                                    <constraint firstAttribute="height" priority="250" constant="280" id="5Qd-cL-YID"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="al3-aa-qgp" userLabel="Vertical Mid">
-                                <rect key="frame" x="160" y="50" width="0.0" height="380"/>
+                                <rect key="frame" x="207" y="84" width="0.0" height="728"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" id="LnH-JA-fgH"/>
