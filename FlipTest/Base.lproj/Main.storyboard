@@ -37,14 +37,12 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfs-FD-ASY" customClass="CardView" customModule="FlipTest" customModuleProvider="target">
                                 <rect key="frame" x="8" y="308" width="191" height="280"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.30316840280000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="280" id="YdT-C1-wHI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-lR-Cky" customClass="CardView" customModule="FlipTest" customModuleProvider="target">
                                 <rect key="frame" x="215" y="308" width="191" height="280"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.30316840280000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="280" id="5Qd-cL-YID"/>
                                 </constraints>

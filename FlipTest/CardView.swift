@@ -18,7 +18,6 @@ class CardView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        configureView()
     }
 
     func setCard(withCardType cardType: String) {
@@ -28,7 +27,8 @@ class CardView: UIView {
 
     func configureView() {
         backImageView = UIImageView(image: nil)
-        frontImageView = UIImageView(image: UIImage(named: Constants.cardType.backside.rawValue))
+        frontImageView = UIImageView(image: UIImage(named: Constants.backside))
+        layer.borderWidth = 1
 
         frontImageView.frame = bounds
         backImageView.frame = bounds
@@ -36,6 +36,7 @@ class CardView: UIView {
         frontImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
+        subviews.forEach { $0.removeFromSuperview() }
         addSubview(frontImageView)
 
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(flip))

@@ -8,7 +8,12 @@
 
 import Foundation
 
-typealias GetCardCB = ([String]) -> Void
+typealias GetCardCB = (Bool, String?, [String]) -> Void
+
+class CardsResObj: Codable {
+    var cards: [Int]?
+    var msg: String?
+}
 
 class NetworkManager {
     static var sharedInstance: NetworkManager = NetworkManager()
@@ -16,7 +21,26 @@ class NetworkManager {
     private init() {}
 
     func getCards(withcallback callback: @escaping GetCardCB) {
-        var cards: [String] = [String]()
-        callback(cards)
+        if let url = URL(string: "\(Constants.serverUrlString)\(Constants.serverPaths.dealCards)") {
+            let task = URLSession.shared.dataTask(with: url) { (data, res, error) in
+                guard let dataRes = data, error == nil else {
+                    callback(false, "Somethign went worng, Server returned error", [])
+                    print(error ?? "")
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    let getCardRes = try decoder.decode(CardsResObj.self, from: dataRes)
+                    let cards = getCardRes.cards?.map { Constants.cardNames[$0] }
+                    callback(true, getCardRes.msg, cards ?? [])
+                } catch let parsingError {
+                    callback(false, "JSON parsing error", [])
+                    print(parsingError)
+                }
+            }
+            task.resume()
+        } else {
+            callback(false, "Bad URL", [])
+        }
     }
 }

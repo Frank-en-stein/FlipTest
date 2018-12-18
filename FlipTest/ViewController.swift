@@ -21,16 +21,25 @@ class ViewController: UIViewController {
             $0.canFlip = false
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     @IBAction func requestCardDidTap(_ sender: UIButton) {
-        NetworkManager.sharedInstance.getCards() { [weak self] cardNames in
-            cardNames.enumerated().forEach { arg in
-                let (index, card) = arg
-                self?.cards[index].setCard(withCardType: card)
+        NetworkManager.sharedInstance.getCards() { [weak self] (isSuccess, msg, cardNames) in
+            if isSuccess {
+                cardNames.enumerated().forEach { arg in
+                    let (index, card) = arg
+                    DispatchQueue.main.async {
+                        self?.cards[index].configureView()
+                        self?.cards[index].setCard(withCardType: card)
+                    }
+                }
+            } else {
+                if let alertMsg = msg {
+                    self?.alert(message: alertMsg)
+                }
             }
         }
     }
