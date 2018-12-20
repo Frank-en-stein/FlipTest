@@ -9,7 +9,6 @@
 import UIKit
 
 public class Constants {
-    public static let serverUrlString: String = "http://192.168.0.2"
 
     public struct serverPaths {
         static let dealCards = "/deal"

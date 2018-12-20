@@ -18,13 +18,15 @@ class CardsResObj: Codable {
 class NetworkManager {
     static var sharedInstance: NetworkManager = NetworkManager()
 
+    public static var serverUrlString: String = "192.168.0.2"
+
     private init() {}
 
     func getCards(withcallback callback: @escaping GetCardCB) {
-        if let url = URL(string: "\(Constants.serverUrlString)\(Constants.serverPaths.dealCards)") {
+        if let url = URL(string: "http://\(NetworkManager.serverUrlString)\(Constants.serverPaths.dealCards)") {
             let task = URLSession.shared.dataTask(with: url) { (data, res, error) in
                 guard let dataRes = data, error == nil else {
-                    callback(false, "Somethign went worng, Server returned error", [])
+                    callback(false, "Somethign went worng. Please check server address and connection", [])
                     print(error ?? "")
                     return
                 }
