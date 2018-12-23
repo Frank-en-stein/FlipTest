@@ -18,6 +18,7 @@ class CardView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        configureView()
     }
 
     func setCard(withCardType cardType: String) {
@@ -42,6 +43,12 @@ class CardView: UIView {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(flip))
         singleTap.numberOfTapsRequired = 1
         addGestureRecognizer(singleTap)
+    }
+    
+    func flipBack() {
+        if !showingBack {
+            flip()
+        }
     }
 
     @objc func flip() {

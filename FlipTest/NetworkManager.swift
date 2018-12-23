@@ -18,7 +18,7 @@ class CardsResObj: Codable {
 class NetworkManager {
     static var sharedInstance: NetworkManager = NetworkManager()
 
-    public static var serverUrlString: String = "192.168.0.2"
+    public static var serverUrlString: String = "192.168.0.105:3000"
 
     private init() {}
 
@@ -34,7 +34,7 @@ class NetworkManager {
                     let decoder = JSONDecoder()
                     let getCardRes = try decoder.decode(CardsResObj.self, from: dataRes)
                     let cards = getCardRes.cards?.map { Constants.cardNames[$0] }
-                    callback(true, getCardRes.msg, cards ?? [])
+                    callback(cards != nil, getCardRes.msg, cards ?? [])
                 } catch let parsingError {
                     callback(false, "JSON parsing error", [])
                     print(parsingError)
