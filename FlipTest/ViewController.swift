@@ -11,29 +11,23 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var cards: [CardView]!
     @IBOutlet var changeDealerButton: UIBarButtonItem!
-    private var gameId = 0
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.global(qos: .background).async {
-            while true {
-                NetworkManager.sharedInstance.getCards(for: self.gameId) { [weak self] (isSuccess, msg, cardNames, gameId) in
-                    if isSuccess {
-                        cardNames.enumerated().forEach { arg in
-                            let (index, card) = arg
-                            DispatchQueue.main.async {
-                                self?.cards[index].configureView()
-                                self?.cards[index].setCard(withCardType: card)
-                                self?.cards[index].flipBack()
-                                self?.gameId = gameId
-                            }
-                        }
-                        self?.alert(message: "Fetched new cards")
-                    } else {
-                        if let alertMsg = msg {
-                            print(alertMsg)
-                        }
+        NetworkManager.sharedInstance.getCards() { [weak self] (isSuccess, msg, cardNames) in
+            if isSuccess {
+                cardNames.enumerated().forEach { arg in
+                    let (index, card) = arg
+                    DispatchQueue.main.async {
+                        self?.cards[index].configureView()
+                        self?.cards[index].setCard(withCardType: card)
+                        self?.cards[index].flipBack()
                     }
+                }
+                self?.alert(message: "Fetched new cards")
+            } else {
+                if let alertMsg = msg {
+                    print(alertMsg)
                 }
             }
         }

@@ -9,7 +9,7 @@
 import Foundation
 import FGRoute
 
-typealias GetCardCB = (Bool, String?, [String], Int) -> Void
+typealias GetCardCB = (Bool, String?, [String]) -> Void
 
 class CardsResObj: Codable {
     var cards: [Int]?
@@ -24,32 +24,37 @@ class NetworkManager {
 
     private init() {}
 
-    func getCards(for gameId: Int, withcallback callback: @escaping GetCardCB) {
+    func getCards(for gameId: Int = 0, withcallback callback: @escaping GetCardCB) {
         guard let serverUrlString = FGRoute.getGatewayIP() else {
             print("Network not connected")
+            getCards(withcallback: callback)
             return
         }
         if let url = URL(string: "http://\(serverUrlString):3000\(Constants.serverPaths.dealCards)/\(gameId)") {
-            let task = URLSession.shared.dataTask(with: url) { (data, res, error) in
+            let task = URLSession.shared.dataTask(with: url) { [gameId] (data, res, error) in
                 guard let dataRes = data, error == nil else {
-                    callback(false, "Somethign went worng. Please check server address and connection", [], 0)
+                    callback(false, "Somethign went worng. Please check server address and connection", [])
                     print(error ?? "")
+                    self.getCards(withcallback: callback)
                     return
                 }
                 do {
                     let decoder = JSONDecoder()
                     let getCardRes = try decoder.decode(CardsResObj.self, from: dataRes)
                     let cards = getCardRes.cards?.map { Constants.cardNames[$0] }
-                    let newGameId = getCardRes.gameId ?? 0
-                    callback(cards != nil, getCardRes.msg, cards ?? [], newGameId)
+                    let newGameId = getCardRes.gameId ?? gameId
+                    callback(cards != nil, getCardRes.msg, cards ?? [])
+                    self.getCards(for: newGameId, withcallback: callback)
                 } catch let parsingError {
-                    callback(false, "JSON parsing error", [], 0)
+                    callback(false, "JSON parsing error", [])
                     print(parsingError)
+                    self.getCards(withcallback: callback)
                 }
             }
             task.resume()
         } else {
-            callback(false, "Bad URL", [], 0)
+            callback(false, "Bad URL", [])
+            self.getCards(withcallback: callback)
         }
     }
 }
