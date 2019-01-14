@@ -368,6 +368,7 @@
 			baseConfigurationReference = 263900791B59CA26982A3DEC /* Pods-FlipTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A546FVTZLL;
 				INFOPLIST_FILE = FlipTest/Info.plist;
@@ -378,6 +379,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = asd.FlipTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -388,6 +390,7 @@
 			baseConfigurationReference = 4EA41B6E7CDE7355EBB5FCA2 /* Pods-FlipTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A546FVTZLL;
 				INFOPLIST_FILE = FlipTest/Info.plist;
@@ -398,6 +401,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = asd.FlipTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
