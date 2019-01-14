@@ -11,9 +11,32 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var cards: [CardView]!
     @IBOutlet var changeDealerButton: UIBarButtonItem!
+    private var gameId = 0
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        DispatchQueue.global(qos: .background).async {
+            while true {
+                NetworkManager.sharedInstance.getCards(for: self.gameId) { [weak self] (isSuccess, msg, cardNames, gameId) in
+                    if isSuccess {
+                        cardNames.enumerated().forEach { arg in
+                            let (index, card) = arg
+                            DispatchQueue.main.async {
+                                self?.cards[index].configureView()
+                                self?.cards[index].setCard(withCardType: card)
+                                self?.cards[index].flipBack()
+                                self?.gameId = gameId
+                            }
+                        }
+                        self?.alert(message: "Fetched new cards")
+                    } else {
+                        if let alertMsg = msg {
+                            print(alertMsg)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -25,39 +48,25 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeDealerButton.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeDealerDidTap)))
+        //changeDealerButton.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeDealerDidTap)))
     }
 
-    @objc func changeDealerDidTap() {
-        let alert = UIAlertController(title: "Change Dealer", message: "Enter ip", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.text = NetworkManager.serverUrlString
-        }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            if let newIp = alert?.textFields?[0].text {
-                print("Text field: \(String(describing: newIp))")
-                NetworkManager.serverUrlString = newIp
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
+//    @objc func changeDealerDidTap() {
+//        let alert = UIAlertController(title: "Change Dealer", message: "Enter ip", preferredStyle: .alert)
+//        alert.addTextField { (textField) in
+//            textField.text = NetworkManager.serverUrlString
+//        }
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+//            if let newIp = alert?.textFields?[0].text {
+//                print("Text field: \(String(describing: newIp))")
+//                NetworkManager.serverUrlString = newIp
+//            }
+//        }))
+//        self.present(alert, animated: true, completion: nil)
+//    }
 
     @IBAction func requestCardDidTap(_ sender: UIButton) {
-        NetworkManager.sharedInstance.getCards() { [weak self] (isSuccess, msg, cardNames) in
-            if isSuccess {
-                cardNames.enumerated().forEach { arg in
-                    let (index, card) = arg
-                    DispatchQueue.main.async {
-                        self?.cards[index].configureView()
-                        self?.cards[index].setCard(withCardType: card)
-                    }
-                }
-            } else {
-                if let alertMsg = msg {
-                    self?.alert(message: alertMsg)
-                }
-            }
-        }
+        cards.forEach { $0.flip() }
     }
 }
 

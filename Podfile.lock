@@ -1,0 +1,16 @@
+PODS:
+  - FGRoute (1.0.4)
+
+DEPENDENCIES:
+  - FGRoute
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FGRoute
+
+SPEC CHECKSUMS:
+  FGRoute: 5a1da5e6702e672b07409904b0db50159c5711be
+
+PODFILE CHECKSUM: 247397ed6d493b8a91da9646530d11f85797a119
+
+COCOAPODS: 1.5.3

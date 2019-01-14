@@ -17,9 +17,13 @@
 		7BE2E7A921C0FA8D004A76EE /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2E7A821C0FA8D004A76EE /* Utility.swift */; };
 		7BE2E7AB21C0FC5E004A76EE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2E7AA21C0FC5E004A76EE /* NetworkManager.swift */; };
 		7BE2E7AD21C0FDF2004A76EE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE2E7AC21C0FDF2004A76EE /* CardView.swift */; };
+		B00C42C8EDF506BA461B229D /* Pods_FlipTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7C118D3F3E587CEC72757B /* Pods_FlipTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D7C118D3F3E587CEC72757B /* Pods_FlipTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		263900791B59CA26982A3DEC /* Pods-FlipTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlipTest/Pods-FlipTest.debug.xcconfig"; sourceTree = "<group>"; };
+		4EA41B6E7CDE7355EBB5FCA2 /* Pods-FlipTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlipTest/Pods-FlipTest.release.xcconfig"; sourceTree = "<group>"; };
 		7B3D91F621C89B10007894C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7BE2E79121C0B011004A76EE /* FlipTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE2E79421C0B011004A76EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,17 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00C42C8EDF506BA461B229D /* Pods_FlipTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00BA09F68E997FF1C8AFC21F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				263900791B59CA26982A3DEC /* Pods-FlipTest.debug.xcconfig */,
+				4EA41B6E7CDE7355EBB5FCA2 /* Pods-FlipTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7BE2E78821C0B011004A76EE = {
 			isa = PBXGroup;
 			children = (
 				7BE2E79321C0B011004A76EE /* FlipTest */,
 				7BE2E79221C0B011004A76EE /* Products */,
+				00BA09F68E997FF1C8AFC21F /* Pods */,
+				9F917C76A170747F412094C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +95,14 @@
 			path = FlipTest;
 			sourceTree = "<group>";
 		};
+		9F917C76A170747F412094C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D7C118D3F3E587CEC72757B /* Pods_FlipTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BE2E7A321C0B013004A76EE /* Build configuration list for PBXNativeTarget "FlipTest" */;
 			buildPhases = (
+				B2C643D0BF60EED32DF89734 /* [CP] Check Pods Manifest.lock */,
 				7BE2E78D21C0B011004A76EE /* Sources */,
 				7BE2E78E21C0B011004A76EE /* Frameworks */,
 				7BE2E78F21C0B011004A76EE /* Resources */,
+				5805FD5CB03BEB844F3AF6BD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,6 +170,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5805FD5CB03BEB844F3AF6BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FlipTest/Pods-FlipTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FGRoute/FGRoute.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FGRoute.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlipTest/Pods-FlipTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2C643D0BF60EED32DF89734 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlipTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7BE2E78D21C0B011004A76EE /* Sources */ = {
@@ -300,6 +365,7 @@
 		};
 		7BE2E7A421C0B013004A76EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 263900791B59CA26982A3DEC /* Pods-FlipTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -319,6 +385,7 @@
 		};
 		7BE2E7A521C0B013004A76EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EA41B6E7CDE7355EBB5FCA2 /* Pods-FlipTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

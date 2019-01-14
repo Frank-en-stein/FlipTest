@@ -1,0 +1,4 @@
+use_frameworks!
+target 'FlipTest' do
+    pod "FGRoute"
+end

@@ -7,26 +7,32 @@
 //
 
 import Foundation
+import FGRoute
 
-typealias GetCardCB = (Bool, String?, [String]) -> Void
+typealias GetCardCB = (Bool, String?, [String], Int) -> Void
 
 class CardsResObj: Codable {
     var cards: [Int]?
     var msg: String?
+    var gameId: Int?
 }
 
 class NetworkManager {
     static var sharedInstance: NetworkManager = NetworkManager()
 
-    public static var serverUrlString: String = "192.168.0.105:3000"
+    public var serverUrlString: String?
 
     private init() {}
 
-    func getCards(withcallback callback: @escaping GetCardCB) {
-        if let url = URL(string: "http://\(NetworkManager.serverUrlString)\(Constants.serverPaths.dealCards)") {
+    func getCards(for gameId: Int, withcallback callback: @escaping GetCardCB) {
+        guard let serverUrlString = FGRoute.getGatewayIP() else {
+            print("Network not connected")
+            return
+        }
+        if let url = URL(string: "http://\(serverUrlString):3000\(Constants.serverPaths.dealCards)/\(gameId)") {
             let task = URLSession.shared.dataTask(with: url) { (data, res, error) in
                 guard let dataRes = data, error == nil else {
-                    callback(false, "Somethign went worng. Please check server address and connection", [])
+                    callback(false, "Somethign went worng. Please check server address and connection", [], 0)
                     print(error ?? "")
                     return
                 }
@@ -34,15 +40,16 @@ class NetworkManager {
                     let decoder = JSONDecoder()
                     let getCardRes = try decoder.decode(CardsResObj.self, from: dataRes)
                     let cards = getCardRes.cards?.map { Constants.cardNames[$0] }
-                    callback(cards != nil, getCardRes.msg, cards ?? [])
+                    let newGameId = getCardRes.gameId ?? 0
+                    callback(cards != nil, getCardRes.msg, cards ?? [], newGameId)
                 } catch let parsingError {
-                    callback(false, "JSON parsing error", [])
+                    callback(false, "JSON parsing error", [], 0)
                     print(parsingError)
                 }
             }
             task.resume()
         } else {
-            callback(false, "Bad URL", [])
+            callback(false, "Bad URL", [], 0)
         }
     }
 }
