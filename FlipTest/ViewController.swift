@@ -60,6 +60,10 @@ class ViewController: UIViewController {
 //    }
 
     @IBAction func requestCardDidTap(_ sender: UIButton) {
+        if cards.isEmpty {
+            alert(message: "No cards available")
+            return
+        }
         cards.forEach { $0.flip() }
     }
 }
